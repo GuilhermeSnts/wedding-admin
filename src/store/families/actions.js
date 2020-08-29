@@ -1,6 +1,10 @@
-import { db } from "../../database";
+import firebase from "firebase";
+import "firebase/firestore";
+
 export function GET_FAMILIES(context) {
-  db.collection("families")
+  firebase
+    .firestore()
+    .collection("families")
     .get()
     .then(querySnapshot => {
       const families = querySnapshot.docs.map(doc => doc.data());

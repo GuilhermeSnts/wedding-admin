@@ -11,7 +11,7 @@ export default {
   name: "NavBar",
   props: {
     items: {
-      type: Object,
+      type: Array,
       required: true
     }
   }
