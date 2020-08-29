@@ -1,14 +1,24 @@
 <template>
   <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-full.svg"
-    >
+    {{ FAMILIES }}
   </q-page>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
-  name: 'PageIndex'
-}
+  name: "PageIndex",
+
+  methods: {
+    ...mapActions("families", ["GET_FAMILIES"])
+  },
+
+  computed: {
+    ...mapGetters("families", ["FAMILIES"])
+  },
+
+  mounted() {
+    this.GET_FAMILIES();
+  }
+};
 </script>
