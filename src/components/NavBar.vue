@@ -1,9 +1,11 @@
-<template>
-  <q-footer class="bg-red-9 text-white">
-    <q-tabs>
-      <q-tab label="a"></q-tab>
-    </q-tabs>
-  </q-footer>
+<template lang="pug">
+  q-footer( color="primary" class="text-white")
+    q-tabs
+      q-tab(icon="mdi-account-group")
+      q-tab(icon="mdi-gift")
+      q-tab(icon="mdi-map-marker")
+      q-tab(icon="mdi-cog")
+
 </template>
 
 <script>
