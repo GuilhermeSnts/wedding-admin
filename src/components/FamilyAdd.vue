@@ -79,11 +79,13 @@ div
           push,
           color="white",
           icon="mdi-plus",
-          label="adicionar"
+          label="adicionar",
+          @click="createFamily()"
         )
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "FamilyAdd",
 
@@ -98,6 +100,8 @@ export default {
   }),
 
   methods: {
+    ...mapActions("families", ["CREATE_FAMILY"]),
+
     addMember() {
       console.log("add");
       this.members.push({ ...this.membersToAdd });
@@ -107,6 +111,31 @@ export default {
 
     removeMember(index) {
       this.members.splice(index, 1);
+    },
+
+    cleanData() {
+      this.members = [];
+      this.membersToAdd.name = "";
+      this.membersToAdd.telephone = "";
+      this.familyName = "";
+    },
+
+    createFamily() {
+      this.$q.loading.show();
+      this.CREATE_FAMILY({
+        name: this.familyName,
+        members: this.members
+      })
+        .then(() => {
+          this.cleanData();
+          this.dialog = false;
+        })
+        .catch(err =>
+          this.$q.notify(
+            "Ocorreu um erro ao gravar. tente novamente mais tarde."
+          )
+        )
+        .finally(() => this.$q.loading.hide());
     }
   }
 };

@@ -11,3 +11,17 @@ export function GET_FAMILIES(context) {
       context.commit("SET_FAMILIES", families);
     });
 }
+
+export function CREATE_FAMILY(context, payload) {
+  return new Promise((resolve, reject) => {
+    firebase
+      .firestore()
+      .collection("families")
+      .doc()
+      .set(payload)
+      .then(() => {
+        resolve();
+      })
+      .catch(err => reject(err));
+  });
+}
