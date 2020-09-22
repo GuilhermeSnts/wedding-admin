@@ -25,3 +25,13 @@ export function CREATE_FAMILY(context, payload) {
       .catch(err => reject(err));
   });
 }
+
+export function WATCH_CHANGES(context) {
+  firebase
+    .firestore()
+    .collection("families")
+    .onSnapshot(querySnapshot => {
+      const families = querySnapshot.docs.map(doc => doc.data());
+      context.commit("SET_FAMILIES", families);
+    });
+}

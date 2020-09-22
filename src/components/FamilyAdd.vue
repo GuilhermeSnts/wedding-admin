@@ -8,7 +8,7 @@ div
     label="familia"
   )
 
-  q-dialog(v-model="dialog", persistent, position="bottom")
+  q-dialog(v-model="dialog", position="bottom")
     q-card.bg-primary.text-white
       q-card-section
         .text-h6 Adicione uma nova familia
